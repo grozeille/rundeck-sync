@@ -1,0 +1,29 @@
+<joblist>
+  <job>
+    <defaultTab>summary</defaultTab>
+    <description></description>
+    <executionEnabled>true</executionEnabled>
+    <id>13c9d8c3-eab9-4969-82b0-d2f2cc851b62</id>
+    <loglevel>INFO</loglevel>
+    <name>test-groovy-git</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='true' strategy='node-first'>
+      <command>
+        <script><![CDATA[mkdir -p /tmp/rundeck/${RD_JOB_EXECID}
+cd /tmp/rundeck/${RD_JOB_EXECID}
+
+git clone https://github.com/grozeille/rundeck-scripts.git
+cd rundeck-scripts
+chmod +x $1
+./$1]]></script>
+        <scriptargs>test.groovy</scriptargs>
+      </command>
+      <command>
+        <script><![CDATA[rm -Rf /tmp/rundeck/${RD_JOB_EXECID}]]></script>
+        <scriptargs />
+      </command>
+    </sequence>
+    <uuid>13c9d8c3-eab9-4969-82b0-d2f2cc851b62</uuid>
+  </job>
+</joblist>
